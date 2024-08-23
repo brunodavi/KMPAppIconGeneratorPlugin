@@ -73,7 +73,7 @@ class KMPAppIconGeneratorPlugin : Plugin<Project> {
         }
 
         // Hook the generateIcons task into the build lifecycle
-        project.tasks.named("build") {
+        project.tasks.named("processResources").configure {
             it.dependsOn(generateIconsTask)
         }
     }
