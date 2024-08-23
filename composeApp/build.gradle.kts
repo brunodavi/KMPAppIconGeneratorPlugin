@@ -90,7 +90,3 @@ java {
     sourceCompatibility = JavaVersion.VERSION_11 // Match the consumer project's Java version
     targetCompatibility = JavaVersion.VERSION_11
 }
-
-tasks.named("build") {
-    dependsOn("generateIcons")
-}

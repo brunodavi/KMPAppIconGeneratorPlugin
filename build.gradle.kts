@@ -8,3 +8,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.jetbrains.kotlin.jvm) apply false
 }
+
+tasks.named("build") {
+    dependsOn("generateIcons")
+}
