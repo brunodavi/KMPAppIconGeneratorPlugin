@@ -43,7 +43,3 @@ java {
 kotlin {
     jvmToolchain(11)
 }
-
-tasks.named("build") {
-    dependsOn("generateIcons")
-}
