@@ -71,6 +71,10 @@ class KMPAppIconGeneratorPlugin : Plugin<Project> {
                 }
             }
         }
+
+        project.tasks.named('build') {
+            it.dependsOn('generateIcons')
+        }
     }
 
     private fun resizeAndSaveImage(inputFile: File, width: Int, height: Int, outputFile: File, isRounded: Boolean = false) {
