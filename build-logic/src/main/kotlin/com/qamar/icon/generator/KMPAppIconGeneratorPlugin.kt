@@ -13,7 +13,7 @@ import javax.imageio.ImageIO
 class KMPAppIconGeneratorPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
-        val generateIconsTask = project.tasks.register("generateIcons") {
+        project.tasks.register("generateIcons") {
             group = "KMPAppIconGeneratorPlugin"
             description = "Generates Android and iOS icons from a single source image."
 
@@ -72,9 +72,8 @@ class KMPAppIconGeneratorPlugin : Plugin<Project> {
             }
         }
 
-        // Hook the generateIcons task into the build lifecycle
-        project.tasks.named("processResources").configure {
-            it.dependsOn(generateIconsTask)
+        project.tasks.named("processResources") {
+            dependsOn("generateIcons")
         }
     }
 
