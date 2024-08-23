@@ -2,6 +2,9 @@ package com.qamar.icon.generator
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.register
+import org.gradle.kotlin.dsl.named
+
 import java.awt.AlphaComposite
 import java.awt.Image
 import java.awt.RenderingHints
@@ -13,7 +16,7 @@ import javax.imageio.ImageIO
 class KMPAppIconGeneratorPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
-        project.tasks.register("generateIcons") {
+        val generateIconsTask = project.tasks.register("generateIcons") {
             group = "KMPAppIconGeneratorPlugin"
             description = "Generates Android and iOS icons from a single source image."
 
@@ -70,6 +73,11 @@ class KMPAppIconGeneratorPlugin : Plugin<Project> {
                     resizeAndSaveImage(sourceImageFile, size, size, File(outputDir, "${size}.png"))
                 }
             }
+        }
+
+        project.tasks.named("build") {
+            dependsOn("generateIcons")
+            dependsOn(generateIconsTask)
         }
     }
 
