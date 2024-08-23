@@ -30,5 +30,8 @@ jobs:
             ~/.gradle/caches/build-cache-*
           key: gradle-cache-icon-generator
 
+      - name: Generate Icons
+        run: ./gradlew generateIcons
+
       - name: Build Extension
         run: ./gradlew build
