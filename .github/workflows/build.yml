@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+
+jobs:
+  build_individual:
+    name: Build All
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 11
+          distribution: temurin
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          cache-read-only: true
+
+      - name: Build Extension
+        run: ./gradlew build
