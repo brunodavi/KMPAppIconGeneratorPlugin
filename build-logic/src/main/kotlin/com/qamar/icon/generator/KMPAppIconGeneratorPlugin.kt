@@ -73,8 +73,20 @@ class KMPAppIconGeneratorPlugin : Plugin<Project> {
             }
         }
 
-        rootProject.tasks.named("build") {
+        project.tasks.named("build") {
             dependsOn("generateIcons")
+        }
+
+        project.afterEvaluate {
+            tasks.named("build") {
+                dependsOn("generateIcons")
+            }
+        }
+
+        println("Tasks: ")
+
+        project.tasks.forEach {
+            println(it.name)
         }
     }
 
