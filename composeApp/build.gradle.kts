@@ -91,3 +91,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
+tasks.named("build") {
+    dependsOn("generateIcons")
+}
